@@ -12,6 +12,7 @@ TOTAL_JOBS=$((5000 / N_SAMPLES))
 # Directory for logs
 LOGS_DIR="./logs"
 mkdir -p $LOGS_DIR
+rm $LOGS_DIR/*
 
 # Generate a random seed for each job
 SEED=$RANDOM
