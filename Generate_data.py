@@ -352,7 +352,7 @@ if __name__ == "__main__":
     df = pd.DataFrame([data.sample_training_data(q_star, q_sample) 
                        for q_star, q_sample in zip(q_stars, q_samples)])
 
-    file_path = f"data/data_{n}_{q_sample_max}.csv"
+    file_path = f"data/data_n_{n}_q_sample_max_{q_sample_max}.csv"
 
     append_dataframe_with_lock(file_path, df)
     print(df)
