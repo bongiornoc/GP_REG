@@ -2,12 +2,11 @@ import os
 import scipy.stats as stats
 import numpy as np
 import scipy.linalg as la
-
-import fcntl
-import time
 import argparse
-
 import pandas as pd
+
+from utils import append_dataframe_with_lock
+
 """
 GenerateData Class
 This class provides methods to generate data using Inverse Wishart and Wishart distributions, 
@@ -286,36 +285,7 @@ class GenerateData:
 
         return df.mean()
 
-# Function to write a DataFrame with file locking
-def append_dataframe_with_lock(file_path, dataframe, max_attempts=100, wait_time=1):
-    attempts = 0
-    while attempts < max_attempts:
-        try:
-            with open(file_path, 'a') as f:
-                # Attempt to acquire the lock without blocking for too long
-                fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)  # LOCK_NB makes the call non-blocking
-                
-                try:
-                    # Check if the file is empty to write the header only once
-                    is_empty = f.tell() == 0
-                    
-                    # Write the DataFrame to the file in append mode
-                    dataframe.to_csv(f, header=is_empty, index=False)
-                    print("DataFrame successfully written in append mode.")
-                    return  # Exit the function if writing is successful
-                
-                finally:
-                    # Release the lock
-                    fcntl.flock(f, fcntl.LOCK_UN)
-        
-        except BlockingIOError:
-            # The file is locked by another process
-            attempts += 1
-            print(f"File is locked, attempt {attempts} of {max_attempts}. Retrying in {wait_time} seconds...")
-            time.sleep(wait_time)
-    
-    # If unable to acquire the lock after all attempts
-    print("Unable to acquire the lock after multiple attempts. Operation failed.")
+
 
 
 if __name__ == "__main__":
