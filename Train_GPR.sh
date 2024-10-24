@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 # Load environment variables from .env file
 source .env
@@ -22,4 +22,4 @@ sbatch --parsable \
     --job-name="train GPR" \
     --output="$LOGS_DIR/output_%A_%a.txt" \
     --error="$LOGS_DIR/error_%A_%a.txt" \
-    --wrap="$SBATCH_MODULES; python Train_GPR.py $FILE_PATH --seed \$((SEED + SLURM_ARRAY_TASK_ID)) --n_jobs 20"
+    --wrap="$SBATCH_MODULES; python Train_GPR.py $FILE_PATH --seed \$((SEED + SLURM_ARRAY_TASK_ID)) --n_jobs 1"
