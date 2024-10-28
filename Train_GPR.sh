@@ -5,7 +5,7 @@ source .env
 
 # Total number of jobs
 TOTAL_JOBS=100
-FILE_PATH="data/data_n_1000_q_sample_max_1.0.csv"
+FILE_PATH="data/data_n_1000_q_sample_max_1_0_q_star_max_0_95.csv"
 
 # Directory for logs
 LOGS_DIR="./logs"

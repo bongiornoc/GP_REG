@@ -302,6 +302,7 @@ if __name__ == "__main__":
     parser.add_argument('--repetitions', type=int, default=100, help='Number of repetitions for generating data')
     parser.add_argument('--n_samples', type=int, default=10, help='Number of samples to generate')
     parser.add_argument('--q_sample_max', type=float, default=1.0, help='Maximum value for q_sample range')
+    parser.add_argument('--q_star_max', type=float, default=0.95, help='Maximum value for q_star range')
 
     args = parser.parse_args()
 
@@ -310,8 +311,9 @@ if __name__ == "__main__":
     repetitions = args.repetitions
     n_samples = args.n_samples
     q_sample_max = args.q_sample_max
+    q_star_max = args.q_star_max
 
-    q_star_range = (0,0.99)
+    q_star_range = (0,q_star_max)
     q_sample_range = (0.,q_sample_max)
 
     rng = np.random.default_rng(seed_value)
@@ -322,7 +324,7 @@ if __name__ == "__main__":
     df = pd.DataFrame([data.sample_training_data(q_star, q_sample) 
                        for q_star, q_sample in zip(q_stars, q_samples)])
 
-    file_path = f"data/data_n_{n}_q_sample_max_{q_sample_max}.csv"
+    file_path = f"datasets/input_data_n_{n}_q_sample_max_{q_sample_max:.1f}_q_star_max_{q_star_max:.2f}.csv".replace('.', '_')
 
     append_dataframe_with_lock(file_path, df)
     print(df)

@@ -7,7 +7,6 @@ from utils import append_dataframe_with_lock
 def main(file_path, seed,population_size, parsimony_coefficient, generations, n_jobs):
     # Load the data
     data = pd.read_csv(file_path)
-    data = data[data['q']<0.9]
 
     # Initialize the Symbolic Regressor
     gp = gplearn.genetic.SymbolicRegressor(
@@ -23,20 +22,22 @@ def main(file_path, seed,population_size, parsimony_coefficient, generations, n_
     gp.fit(data[['r', 'q']], data['KL'])
 
     # Output the results
-    program_str = str(gp._program)
+    best_program = str(gp._program)
+    fitness = gp._program.fitness_
     raw_fitness = gp._program.raw_fitness_
     program_length = gp._program.length_
 
     # Create a DataFrame to store the results
     results = pd.DataFrame({
-        'program': [program_str],
+        'best_program': [best_program],
+        'fitness': [fitness],
         'raw_fitness': [raw_fitness],
         'program_length': [program_length],
         'seed': [seed]
         })
     
     # Write the results to a file
-    append_dataframe_with_lock(file_path.replace('data_','output_'), results)
+    append_dataframe_with_lock(file_path.replace('input_data_','output_results_'), results)
 
 
 
