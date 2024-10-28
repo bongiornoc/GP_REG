@@ -7,6 +7,7 @@ from utils import append_dataframe_with_lock
 def main(file_path, seed,population_size, parsimony_coefficient, generations, n_jobs):
     # Load the data
     data = pd.read_csv(file_path)
+    data = data[data['q']<0.9]
 
     # Initialize the Symbolic Regressor
     gp = gplearn.genetic.SymbolicRegressor(
