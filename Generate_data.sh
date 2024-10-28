@@ -17,6 +17,7 @@ rm -rf $LOGS_DIR/*
 # Generate a random seed for each job
 SEED=$RANDOM
 
+
 # Submit jobs as an array
 sbatch --parsable \
     $SBATCH_OPTIONS \
@@ -24,4 +25,4 @@ sbatch --parsable \
     --job-name="generate_data" \
     --output="$LOGS_DIR/output_%A_%a.txt" \
     --error="$LOGS_DIR/error_%A_%a.txt" \
-    --wrap="$SBATCH_MODULES; python Generate_data.py --seed \$((SEED + SLURM_ARRAY_TASK_ID)) --n_samples $N_SAMPLES --n 1000 --repetitions 500"
+    --wrap="$SBATCH_MODULES; python Generate_data.py --seed \$((SEED + SLURM_ARRAY_TASK_ID)) --n_samples $N_SAMPLES --n 1000 --repetitions 500 --q_sample_max 0.9"
