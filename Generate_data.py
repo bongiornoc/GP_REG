@@ -302,7 +302,7 @@ if __name__ == "__main__":
     parser.add_argument('--repetitions', type=int, default=100, help='Number of repetitions for generating data')
     parser.add_argument('--n_samples', type=int, default=10, help='Number of samples to generate')
     parser.add_argument('--q_sample_max', type=float, default=1.0, help='Maximum value for q_sample range')
-    parser.add_argument('--q_star_max', type=float, default=0.95, help='Maximum value for q_star range')
+    parser.add_argument('--q_star_max', type=float, default=0.90, help='Maximum value for q_star range')
 
     args = parser.parse_args()
 
