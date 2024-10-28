@@ -291,8 +291,8 @@ class GenerateData:
 if __name__ == "__main__":
 
     # create the data directory if it does not exist
-    if not os.path.exists("data"):
-        os.makedirs("data")
+    folder_path = "data"
+    os.makedirs(folder_path, exist_ok=True)
 
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Generate data using Inverse Wishart and Wishart distributions.")
@@ -324,7 +324,7 @@ if __name__ == "__main__":
     df = pd.DataFrame([data.sample_training_data(q_star, q_sample) 
                        for q_star, q_sample in zip(q_stars, q_samples)])
 
-    file_path = f"datasets/input_data_n_{n}_q_sample_max_{q_sample_max:.1f}_q_star_max_{q_star_max:.2f}.csv".replace('.', '_')
+    file_path = f"{folder_path}/input_data_n_{n}_q_sample_max_{q_sample_max:.1f}_q_star_max_{q_star_max:.2f}.csv".replace('.', '_')
 
     append_dataframe_with_lock(file_path, df)
     print(df)
