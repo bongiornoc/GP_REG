@@ -1,11 +1,3 @@
-#!/bin/bash
-
-# Load environment variables from .env file
-source .env
-
-# Number of samples per job
-N_SAMPLES=10
-
 # Total number of jobs
 TOTAL_JOBS=$((1000 / N_SAMPLES))
 
@@ -17,6 +9,11 @@ rm -rf $LOGS_DIR/*
 # Generate a random seed for each job
 SEED=$RANDOM
 
+# Parameters
+N=1000
+REPETITIONS=500
+Q_SAMPLE_MAX=1.0
+Q_STAR_MAX=1.0
 
 # Submit jobs as an array
 sbatch --parsable \
@@ -25,4 +22,4 @@ sbatch --parsable \
     --job-name="generate_data" \
     --output="$LOGS_DIR/output_%A_%a.txt" \
     --error="$LOGS_DIR/error_%A_%a.txt" \
-    --wrap="$SBATCH_MODULES; python Generate_data.py --seed \$((SEED + SLURM_ARRAY_TASK_ID)) --n_samples $N_SAMPLES --n 1000 --repetitions 500 --q_sample_max 0.9"
+    --wrap="$SBATCH_MODULES; python Generate_data.py --seed \$((SEED + SLURM_ARRAY_TASK_ID)) --n_samples $N_SAMPLES --n $N --repetitions $REPETITIONS --q_sample_max $Q_SAMPLE_MAX --q_star_max $Q_STAR_MAX"
