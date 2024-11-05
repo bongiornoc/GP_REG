@@ -1,3 +1,11 @@
+#!/bin/bash
+
+# Load environment variables from .env file
+source .env
+
+# Number of samples per job
+N_SAMPLES=10
+
 # Total number of jobs
 TOTAL_JOBS=$((1000 / N_SAMPLES))
 
