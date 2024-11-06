@@ -38,15 +38,7 @@ pip install -r requirements.txt
 
 ### Generating Data
 
-You can generate synthetic data by running 
-
-Generate_data.py
-
- directly or via the SLURM submission script 
-
-Generate_data.sh
-
-.
+You can generate synthetic data by running `Generate_data.py` directly or via the SLURM submission script `Generate_data.sh`.
 
 #### Running Locally
 
@@ -62,11 +54,8 @@ bash Generate_data.sh
 
 ### Training the Symbolic Regressor
 
-Train the symbolic regression model using 
+Train the symbolic regression model using  `Train_GPR.py`.
 
-Train_GPR.py
-
-.
 
 #### Running Locally
 
@@ -82,11 +71,8 @@ bash Train_GPR.sh
 
 ### Analysis
 
-Analyze the results using 
+Analyze the results using `Analysis.ipynb`
 
-Analysis.ipynb
-
-:
 
 ```sh
 jupyter notebook Analysis.ipynb
@@ -100,67 +86,19 @@ regression_output.loc[:, 'best_program']
 
 ## Utility Functions
 
-- 
-
-append_dataframe_with_lock
-
-: Safely append a DataFrame to a CSV file with file locking.
-- 
-
-SymbolicExpressionConverter
-
-: Convert a symbolic expression string into a 
-
-sympy
-
- expression.
-- 
-
-verify_terms_in_program
-
-: Verify the presence of specific terms in symbolic expressions within a CSV file.
+- `append_dataframe_with_lock`: Safely append a DataFrame to a CSV file with file locking.
+- `SymbolicExpressionConverter`: Convert a symbolic expression string into a `sympy` expression.
+- `verify_terms_in_program`: Verify the presence of specific terms in symbolic expressions within a CSV file.
 
 ## Data Generation Details
 
-The 
+The `GenerateData` class in `Generate_data.py` includes methods to:
 
-GenerateData
-
- class in 
-
-Generate_data.py
-
- includes methods to:
-
-- Sample from the Inverse Wishart distribution: 
-
-Sample_WhiteInvWishart
-
-
-- Sample from the Wishart distribution: 
-
-SampleWishart
-
-
-- Compute the Kullback-Leibler divergence: 
-
-Compute_KL
-
-
-- Compute the ratio 
-
-r
-
-: 
-
-compute_r
-
-
-- Sample training data: 
-
-sample_training_data
-
-
+- Sample from the Inverse Wishart distribution: `Sample_WhiteInvWishart`
+- Sample from the Wishart distribution: `SampleWishart`
+- Compute the Kullback-Leibler divergence: `Compute_KL`
+- Compute the ratio `r`: `compute_r`
+- Sample training data: `sample_training_data`
 
 ## Citing This Work
 
