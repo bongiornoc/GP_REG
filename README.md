@@ -8,46 +8,14 @@ If you use this code in your research, please consider citing the paper.
 
 ## Repository Structure
 
-- 
-
-Generate_data.py
-
-: Script to generate synthetic data using Inverse Wishart and Wishart distributions.
-- 
-
-Generate_data.sh
-
-: Shell script to submit data generation jobs to a computing cluster.
-- 
-
-Train_GPR.py
-
-: Script to train a symbolic regression model using Genetic Programming.
-- 
-
-Train_GPR.sh
-
-: Shell script to submit training jobs to a computing cluster.
-- 
-
-utils.py
-
-: Utility functions used across the project.
-- 
-
-Analysis.ipynb
-
-: Jupyter Notebook for analyzing the symbolic regression results.
-- 
-
-requirements.txt
-
-: List of Python dependencies.
-- 
-
-.gitignore
-
-: Specifies files and directories to ignore in version control.
+- `Generate_data.py`: Script to generate synthetic data using Inverse Wishart and Wishart distributions.
+- `Generate_data.sh`: Shell script to submit data generation jobs to a computing cluster.
+- `Train_GPR.py`: Script to train a symbolic regression model using Genetic Programming.
+- `Train_GPR.sh`: Shell script to submit training jobs to a computing cluster.
+- `utils.py`: Utility functions used across the project.
+- `Analysis.ipynb`: Jupyter Notebook for analyzing the symbolic regression results.
+- `requirements.txt`: List of Python dependencies.
+- `.gitignore`: Specifies files and directories to ignore in version control.
 - `logs/`: Directory for log files (ignored by version control).
 
 ## Installation
@@ -124,10 +92,10 @@ Analysis.ipynb
 jupyter notebook Analysis.ipynb
 ```
 
-Within the notebook, you can view the best program:
+Within the notebook, you can view the best programs:
 
 ```python
-regression_output.loc[0, 'best_program']
+regression_output.loc[:, 'best_program']
 ```
 
 ## Utility Functions
